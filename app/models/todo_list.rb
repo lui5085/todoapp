@@ -1,5 +1,5 @@
 class TodoList < ApplicationRecord
-    has_many :itens
+    has_many :items, dependent: :destroy
     belongs_to :user
 
     scope :by_user, lambda {|user|

@@ -9,6 +9,8 @@ class TodoListsController < ApplicationController
 
   # GET /todo_lists/1 or /todo_lists/1.json
   def show
+    @item = Item.new
+    @items = @todo_list.items
   end
 
   # GET /todo_lists/new
@@ -68,6 +70,6 @@ class TodoListsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def todo_list_params
-      params.fetch(:todo_list, {})
+      params.require(:todo_list).permit(:title)
     end
 end
