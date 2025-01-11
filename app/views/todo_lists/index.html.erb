@@ -8,7 +8,8 @@
   <% @todo_lists.each do |todo_list| %>
     <%= render todo_list %>
     <p>
-      <%= link_to "Show this todo list", todo_list %>
+      <%= todo_list.title %>
+      <%= link_to "Show", todo_list %>
     </p>
   <% end %>
 </div>
