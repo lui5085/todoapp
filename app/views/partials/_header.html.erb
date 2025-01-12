@@ -2,8 +2,7 @@
   <div class="container">
     <%= link_to "Home", root_path, class: "navbar-brand" %>
 
-    <!-- Toggle button -->
-    <!-- Trocar data-mdb por data-bs -->
+    
     <button
       class="navbar-toggler"
       type="button"
@@ -20,9 +19,6 @@
       <!-- Trocar ID conforme data-bs-target acima -->
       <div class="collapse navbar-collapse" id="navbarButtonsExample">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item ">
-            <%= link_to 'My Todos', todo_lists_path, class:"nav-link text-light" %>
-          </li>
         </ul>
         <div class="d-flex align-items-center">
           <%= button_to "Sign out", destroy_user_session_path, method: :delete, class:"btn btn-outline-info px-3 me-2" %>

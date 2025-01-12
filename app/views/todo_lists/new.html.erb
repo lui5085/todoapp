@@ -1,20 +1,24 @@
-<% content_for :title, "New todo list" %>
+<% content_for :title, "New Todo List" %>
 
-<div><% content_for :title, "New todo list" %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
 
-<h1>New todo list</h1>
+      <h2 class="text-center mb-4">New Todo List</h2>
+      
+      <%= form_for @todo_list do |f| %>
+        <div class="mb-3">
+          <%= f.text_field :title, placeholder: "Title", class: "form-control" %>
+        </div>
 
-<%= form_for @todo_list do |f| %>
-  <div>
-    <%= f.label :title, "Title" %>
-    <%= f.text_field :title %>
-  
-    <%= f.submit "Create Todo List" %>
+        <div class="d-grid mb-3">
+          <%= f.submit "Create Todo List", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+      <div class="text-center">
+        <%= link_to "Back to Todo Lists", todo_lists_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
   </div>
-<% end %>
-
-<br>
-
-</div>
-  <%= link_to "Back to todo lists", todo_lists_path %>
 </div>

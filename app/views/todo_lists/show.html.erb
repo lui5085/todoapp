@@ -1,43 +1,69 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, "Todo List Items" %>
 
-<%= render @todo_list %>
+<p style="color: green;"><%= notice %></p>
 
-<div>
-  <p>
-    <strong>Title:</strong>
-    <%= @todo_list.title %>
-  </p>
-
-  <% @items.each do |item| %>
-    
-    <% if item.conclued == true %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
       
-      <strike> <p> <%= item.title %> </p> </strike>
-      <%= form_for item do |f| %>
-        <%= f.check_box :conclued, :value => item.conclued %>
-        <%= f.submit "Undo" %>
+      <% if @todo_list.items.any? && @todo_list.items.all? { |i| i.conclued } %>
+        <h2 class="text-center mb-4"><strike><%= @todo_list.title %></strike></h2>
+      <% else %>
+        <h2 class="text-center mb-4"><%= @todo_list.title %></h2>
       <% end %>
-    <% elsif item.conclued == false %>
-      <p> <%= item.title %> </p>
-      <%= form_for item do |f| %>
-        <%= f.check_box :conclued, :value => item.conclued %>
-        <%= f.submit "Conclued" %>
+
+      <% @items.each do |item| %>
+        <div class="card mb-3">
+          <div class="card-body d-flex align-items-center">
+            <!-- Checkbox apenas para indicar o status -->
+            <input type="checkbox" class="form-check-input me-3" disabled <%= item.conclued ? 'checked' : '' %> />
+      
+            <!-- Título do item -->
+            <% if item.conclued %>
+              <!-- Texto riscado para itens concluídos -->
+              <strike class="flex-grow-1 text-truncate mb-0">
+                <p class="mb-0"><%= item.title %></p>
+              </strike>
+            <% else %>
+              <!-- Texto normal para itens não concluídos -->
+              <p class="flex-grow-1 text-truncate mb-0"><%= item.title %></p>
+            <% end %>
+      
+            <!-- Botão no final para alternar entre "Conclude" e "Undo" -->
+            <%= form_for item, method: :patch, class: "ms-auto" do |f| %>
+              <% if item.conclued %>
+                <%= f.hidden_field :conclued, value: false %>
+                <%= f.submit "Undo", class: "btn btn-sm btn-secondary" %>
+              <% else %>
+                <%= f.hidden_field :conclued, value: true %>
+                <%= f.submit "Conclude", class: "btn btn-sm btn-success" %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
-    <% end %>
-  <% end %>
+      
+      <h4 class="text-center mb-4">Add New Item</h4>
+      <%= form_for @item do |f| %>
+        <div class="mb-3">
+          <%= f.text_field :title, placeholder: "Item title", class: "form-control" %>
+        </div>
 
-  <%= form_for @item do |f| %>
+        <%= f.hidden_field :todo_list_id, value: @todo_list.id %>
+        <%= f.hidden_field :conclued, value: false %>
 
-    <p><%= f.text_field :title %></p>
+        <div class="d-grid mb-4">
+          <%= f.submit "Add Item", class: "btn btn-primary" %>
+        </div>
+      <% end %>
 
-    <%= f.hidden_field :todo_list_id, :value => @todo_list.id %>
-    <%= f.hidden_field :conclued, :value => false %>
+      
+      <div class="d-flex flex-wrap gap-2 mb-2 justify-content-center">
+        <%= link_to "Edit this Todo List", edit_todo_list_path(@todo_list), class: "btn btn-warning" %>
+        <%= button_to "Destroy this Todo List", @todo_list, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      </div>
 
-    <%= f.submit "Add Item" %>
-  <% end %>
 
-  <%= link_to "Edit this todo list", edit_todo_list_path(@todo_list) %> |
-  <%= link_to "Back to todo lists", todo_lists_path %>
-
-  <%= button_to "Destroy this todo list", @todo_list, method: :delete %>
+    </div>
+  </div>
 </div>
