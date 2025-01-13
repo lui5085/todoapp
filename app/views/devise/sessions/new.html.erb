@@ -2,11 +2,10 @@
 
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <!-- Ajusta a largura para ficar centralizado em telas médias ou maiores -->
     <div class="col-md-6">
       <h2 class="text-center mb-4">Log in</h2>
 
-      <!-- Formulário do Devise para login -->
+      
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         
         <!-- Campo de Email -->
@@ -18,7 +17,7 @@
                 placeholder: "Email" %>
         </div>
 
-        <!-- Campo de Senha -->
+        
         <div class="mb-3">
           <%= f.password_field :password, 
                 autocomplete: "current-password", 
@@ -26,7 +25,6 @@
                 placeholder: "Password" %>
         </div>
 
-        <!-- Remember me (opcional) e link "Forgot your password?" -->
         <% if devise_mapping.rememberable? %>
           <div class="row mb-3">
             <div class="col d-flex align-items-center">
@@ -37,11 +35,7 @@
                 Remember me
               </label>
             </div>
-            <div class="col text-end">
-              <%= link_to "Forgot your password?", 
-                    new_password_path(resource_name), 
-                    class: "text-decoration-none" %>
-            </div>
+    
           </div>
         <% end %>
 
