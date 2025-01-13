@@ -1,7 +1,11 @@
 require "test_helper"
 
 class TodoListsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
+    @user = users(:one) 
+    sign_in @user
     @todo_list = todo_lists(:one)
   end
 
@@ -17,7 +21,7 @@ class TodoListsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create todo_list" do
     assert_difference("TodoList.count") do
-      post todo_lists_url, params: { todo_list: {} }
+      post todo_lists_url, params: { todo_list: { title: "New Todo List", user_id: @user.id } }
     end
 
     assert_redirected_to todo_list_url(TodoList.last)
@@ -34,7 +38,7 @@ class TodoListsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update todo_list" do
-    patch todo_list_url(@todo_list), params: { todo_list: {} }
+    patch todo_list_url(@todo_list), params: { todo_list: { title: "Updated Title" } }
     assert_redirected_to todo_list_url(@todo_list)
   end
 

@@ -4,8 +4,16 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: "First Todo List"
+  user: one
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+
+two:
+  title: "Second Todo List"
+  user: two
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
