@@ -7,12 +7,12 @@ class TodoListsTest < ApplicationSystemTestCase
 
   test "visiting the index" do
     visit todo_lists_url
-    assert_selector "h1", text: "Todo lists"
+    assert_selector "h2", text: "My Todo Lists"
   end
 
   test "should create todo list" do
     visit todo_lists_url
-    click_on "New todo list"
+    click_on "New Todo List"
 
     click_on "Create Todo list"
 
@@ -22,7 +22,7 @@ class TodoListsTest < ApplicationSystemTestCase
 
   test "should update Todo list" do
     visit todo_list_url(@todo_list)
-    click_on "Edit this todo list", match: :first
+    click_on "Edit this Todo List", match: :first
 
     click_on "Update Todo list"
 
@@ -32,7 +32,7 @@ class TodoListsTest < ApplicationSystemTestCase
 
   test "should destroy Todo list" do
     visit todo_list_url(@todo_list)
-    click_on "Destroy this todo list", match: :first
+    click_on "Destroy this Todo List", match: :first
 
     assert_text "Todo list was successfully destroyed"
   end
