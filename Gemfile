@@ -51,7 +51,6 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem "rspec-rails"
-
 end
 
 group :development do
@@ -65,7 +64,6 @@ group :test do
   gem "selenium-webdriver"
   gem "factory_bot_rails"
   gem "shoulda-matchers"
-
 end
 
 gem "devise", "~> 4.9"

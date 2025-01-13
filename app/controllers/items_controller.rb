@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-
     def create
         @item = Item.create(item_params)
 
@@ -8,7 +7,7 @@ class ItemsController < ApplicationController
             redirect_to todo_list_path(@item.todo_list_id)
         else
             redirect_to root_path
-        end  
+        end
     end
 
     def update
@@ -26,8 +25,4 @@ class ItemsController < ApplicationController
     def item_params
         params.require(:item).permit(:title, :conclued, :todo_list_id)
     end
-
-
-
-
 end

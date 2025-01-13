@@ -14,5 +14,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  root 'todo_lists#index'
+  root "todo_lists#index"
 end

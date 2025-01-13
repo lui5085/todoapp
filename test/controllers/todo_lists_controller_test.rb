@@ -4,7 +4,7 @@ class TodoListsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   setup do
-    @user = users(:one) 
+    @user = users(:one)
     sign_in @user
     @todo_list = todo_lists(:one)
   end
